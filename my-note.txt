@@ -1,0 +1,219 @@
+####自定义
+    ALT+Q                           ：创建新文本
+    ALT+F                           ：打开终端
+    ALT+J                           ：打开谷歌浏览器
+
+####全局快捷键
+    F6                                :选中地址栏链接
+    F1                                ：帮助
+    F10                               ：显示菜单
+    F11                               ：窗口全屏切换
+    windows+w  （上下左右和enter选择）  ：查看当前打开的所有窗口。
+    windows+d                          ：显示桌面
+    ctrl+Alt+左右                      ：桌面切换。
+####terminal快捷键
+    ALT+数字                          ：打开对应的标签
+    ctrl+alt+t                        ：终端内打开新标签
+    ctrl+d                            ：关闭终端
+    ctrl+l                            ：清屏
+    
+####gedit快捷键
+    ALT+数字                          ：打开对应的标签
+    ctrl+n                            ：创建新文档
+    ctrl+w                            ：关闭当前编辑的标签
+    ctrl+f                            :搜索；增量搜索为：要想跳到第二个匹配项，按组合键 Ctrl+G。按 Ctrl+Shift+G 回到前一个匹配项
+    
+    ##标签快捷键：
+
+        Ctrl + Alt + PageUp	切换到左边的标签页。
+        Ctrl + Alt + PageDown	切换到右边的标签页。
+        Ctrl + W   	关闭标签页。
+        Ctrl + Shift + L	保存全部标签页。
+        Ctrl + Shift + W	关闭全部标签页。
+        Alt + n	跳到第 n 个标签页(n 是数字)。
+
+    ##文件操作的快捷键：
+
+        Ctrl + N	创建新文件
+        Ctrl + O   	打开文档。
+        Ctrl + L	打开位置。
+        Ctrl + S	保存当前文档。
+        Ctrl + Shift + S	用一个新的文件名保存当前文档。
+        Ctrl + P	打印当前文档。
+        Ctrl + Shift + P	打印预览。
+        Ctrl + W	关闭当前文档。
+        Ctrl + Q	退出 Gedit。
+
+    ##编辑文档的快捷键：
+
+        Ctrl + Z	撤销上一次操作。
+        Ctrl + Shift + Z	重做最上一次的撤销操作。
+        Ctrl + X	剪切选中的文本或区域，并放到剪贴板中。
+        Ctrl + C	复制选中的文本或区域，并放到剪贴板中。
+        Ctrl + V	从剪贴板中粘贴内容。
+        Ctrl + A	全选
+        Ctrl + D	删除当前行。
+        Alt + Up	Move the selected line up one line.
+        Alt + Down	Move the selected line down one line.
+
+    ##显示和隐藏面板的快捷键：
+
+        F9	显示/隐藏侧边栏。
+        Ctrl + F9	显示/隐藏底边栏。
+
+    ##搜索的快捷键：
+        Ctrl +  F	查找字符串。
+        Ctrl + G	查找下一个匹配的字符串。
+        Ctrl + Shift + G	查找前一个匹配的字符串。
+        Ctrl + K	交互式搜索。
+        Ctrl + H	查找并替换
+        Ctrl + Shift + K	清除高亮显示。
+        Ctrl + I	跳转到行。
+
+    ##工具快捷键：
+        Shift + F7	检查拼写(使用插件)。
+        Alt + F12	删除尾部空格(使用插件)。
+        Ctrl + T	缩进(使用插件)。
+        Ctrl + Shift + T	清除缩进(使用插件)。
+        F8	在当前文件夹运行“make”命令(用插件)。
+        Ctrl + Shift + D	文件夹列表(使用插件)。
+
+####vim快捷键
+
+####vim配置（套用peter的现成配置）
+    
+    if you want to have my vim configuration, do these:
+
+    git clone git://github.com/happypeter/peter-vim.git
+    cd  #goto your $HOME
+    mv peter-vim .vim #have the right name
+    cd .vim/
+    vim README # check the readme to know more
+
+####资源管理器快捷键
+    F9                                  ：是否显示分区列表
+    F7                                  ：内嵌打开终端
+    F3                                  ：分两栏显示目录内的文件列表
+
+####修改用户密码
+    passwd  <用户名>
+    
+####软件安装与卸载
+    **安装
+        sudo apt-get install <软件包名称>
+        sudo apt-get update
+    **安装语言包
+        sudo apt-get install language-pack-zh
+        sudo apt-get install language-support-zh
+    **软件卸载
+        sudo dpkg --purge  <xxx>  :卸载软件包
+        purge                     ：将将所有未删利索的软件包（状态为 rc 的软件包）彻  底 删除 ...
+
+        dpkg -l                   :查看所有已经安装的包
+        dpkg -l|grep <目标包大致名称> ：查看与目标包相关的包；（|：管道线，）
+        man dpkg                    ：查看dpkg手册。
+
+####内容查询
+            /<所关心得内容>    +enter  ：在man和vim中查找自己比较关心的内容；查找过程中输入b、n在全文中查看搜索关键字的上一个/下一个；
+            
+####进程管理
+    ps aux|grep <目标进程>     ：查看与目标包相关的已开启的进程名，按开启时间排序。
+    ps aux                    :查看所有当前打开的文件进程，最后一列显示<打开命令 文件完整位置路径（绝对路径）> ,以后需要使用时就可用此命令直接打开文件。
+    kill -9 <进程编号>        ：强制杀死进程，kill <进程编号>也可以，但是无法杀死失去响应的进程，只是相当于按下关闭键；
+    
+####打开媒体以及数据文件命令
+    evince <xxx.pdf>          :打开pdf文件。
+    eog <图片名称>             ：打开图片。
+    totem <视频名称>           ：用totem打开视频。
+    vlc <视频名称>             ：用VLC打开视频文件
+    cvlc <视频名称>            ：用VLC在无工具框的情况下打开视频文件
+    ctrl+c    （在终端里面操作）：关闭刚刚打开的文件。
+    
+
+####文件权限
+    ls -l <文件名>           ：单个文件权限查看。
+    ls -l     (l为字母l)      ：列出当前目录下所有文件的权限相关数据。
+    -rwxr-xr-x 1 yicheng yicheng 7087 2011-01-09 15:37 a.out
+    -/rwx/r-x/r-x 1 用户名 用户组 7087 时间 <文件名>
+    -/登录用户权限/同组用户权限/其他人的权限 
+    -/111/101/101           ：三个八进制数表示出权限；依次为读、写、执行，有权限赋值为1，无权限则赋值0，再以八进制421码表示出来，最终以八进制数参与终端运行；
+    chmod 755 <file name>   :改变文件的权限为755.文件权限赋予命令。
+终端中，显示为绿色字符的为带可执行权限的程序；
+
+####Vim快速配置 （Vim Conf Share） 
+    if you want to have my vim configuration, do these:
+        git clone git://github.com/happypeter/peter-vim.git
+        cd  #goto your $HOME
+        mv peter-vim .vim #have the right name
+        cd .vim/
+        vim README # check the readme to know more
+        配置完成后需要安装ctags包方可正常运行，有时候如果vim版本不对，则卸载后再次安装，记得将关联包安装回来。
+        
+####动态显示文件修改版本与作者：
+    sudo apt-get install gource   安装动态显示软件
+    gource                        在tig生效的文件夹内执行即可动态显示版本动态。
+      
+####cd -     :跳转到上次操作的文件夹，即在当前所在路径与上次所在路径之间跳转。
+   cd ..    :跳到当前路径的上一页。 
+   
+####bash小程序(文件名后缀必须为 .sh)
+
+    ##输出hello：
+        #!/bin/bash            :#!为固定格式，后面的为指定打开的程序
+
+        echo hello             ：echo为固定格式，hello为输出对象
+    ##将文件内容转化为html格式并在后台显示于火狐中：
+        #!/bin/bash
+        markdown practise>p.html
+        firefox p.html&                     &表示后台打开
+    **:默认情况下文本没有执行权限，chmod +x <文件名> 添加执行权限，执行时需要指定路径，<./>是指定路径为当前目录。
+    ##带重定向的以浏览器显示文档
+        :#!/bin/bash
+        markdown $1>p.html
+        firefox p.html&
+    **执行：  ./<文件名>  <$1指向的定向文件>
+    ##位置符用于屏幕输出
+        #!/bin/bash
+        echo $1         #输出命令后第一个单词
+        echo $2         #输出命令后第二个单词
+        echo $0         #输出命令本身内容
+    **执行： ./<文件名> <第一个单词> <第二个单词>
+    
+####bin 全局命令脚本（即命令）制作
+    1、写好可执行命令，放到/bin 目录下，注意写好的bash脚本必须赋予可执行权限；
+    2、无论在哪个目录下都可以用放入/bin目录下的脚本名称来执行相应的命令，注意命令内部的执行格式。
+    3、eg：
+            #!/bin/bash
+            echo $1
+            echo $2
+            echo $0        
+       **$1定向标号$<number> 里面的内容如果未填写则无相应的输出。
+
+
+####bad interpreter 坏死的解释程序。
+
+####安装下载软件
+    1、进入软件经过解压后的文件夹里面；
+    2、依次输入：  ./configure 
+                  make  
+                  make install
+    3、第一条指令执行之后一般会出现缺少某几个包，则用新立得安装相应得包。
+    
+    
+####GIT
+    **克隆
+        git克隆时注意克隆可读可写得版本，这样得话版本跟踪、版本更新、版本上传都可以直接使用了！
+    **建立文件版本追踪
+        mkdir <目录名>
+        cd    <目录名>
+        git init  ：初始化/建立.git文件用于追踪
+        ls -a
+        vim   <文件名>  ：建立并编辑文件内容
+        git add <文件名> ：将文件纳入跟踪范围
+        git commit -a -m "vision1" :将改变命名为vision1
+        tig            ：查看文件版本改变；
+            tig小技巧
+                hjkl，左下上右查看内容；D键直接查看被改变的文件内容；
+        
+    
+
