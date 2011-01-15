@@ -214,6 +214,95 @@
         tig            ：查看文件版本改变；
             tig小技巧
                 hjkl，左下上右查看内容；D键直接查看被改变的文件内容；
-        
+
+####objdump:反汇编工具
+            将二进制程序反汇编成汇编语言；
+            app：二进制可执行程序；
+            -d :反汇编
+            -s :列出源代码
+            -j :
+            -g :反汇编时为程序生成可供调试使用的符号表；从二进制到C常用；
+ 080483a2 <main>:
+ 80483a2:   55                      push   %ebp        ------函数入口地址，即首地址；
+ 80483a3:   89 e5                   mov    %esp,%ebp   ------mov占用2个字节,地址之差
+ 80483a5:   83 ec 18                sub    $0x18,%esp  ------sub占用两格字节，地址之差
+ 
+#80483b7:  e8 d8 ff ff ff          call   8048394 <add> -----  e8为固定值，相当于
+                                   call   ffffffd8
+
+    ****
     
+####指令集类型
+    i386：典型的变长指令集
+    
+####汇编补充
+    格式
+        指令 操作数
+        指令 操作数1，操作数2
+    寄存器
+        通用寄存器 eax，ebx,ecx,edx,每个32位，4字节
+        特殊寄存器 esi，edi ：只存下标
+        栈寄存器   esp，ebp ：只存地址，esp存栈顶地址，ebp存栈底；仅仅栈顶变化，栈底是不发生变化的,二者的值为对应单元首地址；
+                  eflags ：保存硬件标识
+                  eip ：程序计数器，永远保存的时下一条指令的地址，programe count;所有的跳转都是与eip相关，有
+        栈：先进后出，存储；生长方向是从上到下；
+   常用指令
+        push %ebp    ：将esp向下移动，再将ebp中的值存到esp指向的空间，；
+        pop  %ebp    ：取出栈顶的值，再向上移动esp；
+        call <地址>  ：（1）、push %eip；             
+                       （2）、jmp到地址；       【跳转指令」
+        ret          ：pop %eip  （从栈中取出eip的值，并将值还原到eip寄存器中）
+        mov  <数>,<寄存器>   ：  mov $0x10,%ebx
+                            从左向右赋值
+        mov  <寄存器>，<寄存器>  ：寄存器中的值传递
+        mov  （%esp），%eax   ：将地址为esp中的值的内存单元中的内容存到eax中；
+        mov   -8（%esp），%eax  :esp中的值-8，得到地址，去此地址的内存单元中取出内容给eax；相对寻址赋值；
+        leave    两步：
+                （1）、mov %ebp，%esp
+                （2）、pop %ebp
+                
+        ****参数传递方式
+            编译：栈传递
+            系统调研：寄存器传递；
+        ****
+        $? 保存最近执行程序的返回值；
+            echo  $?   :将它输出到屏幕；
+####
+    linux下可执行文件  ELF （ excute linkable formate ）
+####
+    ls -l <文件名> ：查看文件详细信息，带字节数；
+    readelf  :读elf中各个段；可用man查看具体命令信息；
+        -S  --section-headers   Display the sections' header
+            --sections          An alias for --section-headers
+
+    
+        
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
