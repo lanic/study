@@ -227,8 +227,26 @@
  80483a3:   89 e5                   mov    %esp,%ebp   ------mov占用2个字节,地址之差
  80483a5:   83 ec 18                sub    $0x18,%esp  ------sub占用两格字节，地址之差
  
-#80483b7:  e8 d8 ff ff ff          call   8048394 <add> -----  e8为固定值，相当于
-                                   call   ffffffd8
+#80483b7:  e8 d8 ff ff ff          call   8048394 <add> -----  e8为固定值，操作码
+                                   call   ffffffd8     ------操作数（多模块时为 ，链接时所有调用函数的地方都需要重定位）
+                                   
+   1 
+  2 hello.o:     file format elf32-i386
+  3 
+  4 
+  5 Disassembly of section .text:
+  6 
+  7 00000000 <main>:
+  8    0:   55                      push   %ebp
+  9    1:   89 e5                   mov    %esp,%ebp
+ 10    3:   83 e4 f0                and    $0xfffffff0,%esp
+ 11    6:   83 ec 10                sub    $0x10,%esp
+ 12    9:   c7 04 24 00 00 00 00    movl   $0x0,(%esp)
+ 13   10:   e8 fc ff ff ff          call   11 <main+0x11>
+ 14   15:   b8 00 00 00 00          mov    $0x0,%eax
+ 15   1a:   c9                      leave
+ 16   1b:   c3                      ret
+                                  
 
     ****
     
@@ -244,7 +262,7 @@
         特殊寄存器 esi，edi ：只存下标
         栈寄存器   esp，ebp ：只存地址，esp存栈顶地址，ebp存栈底；仅仅栈顶变化，栈底是不发生变化的,二者的值为对应单元首地址；
                   eflags ：保存硬件标识
-                  eip ：程序计数器，永远保存的时下一条指令的地址，programe count;所有的跳转都是与eip相关，有
+                  eip ：程序计数器（programe count），永远保存的是下一条指令的地址;所有的跳转都是与eip相关。
         栈：先进后出，存储；生长方向是从上到下；
    常用指令
         push %ebp    ：将esp向下移动，再将ebp中的值存到esp指向的空间，；
@@ -274,6 +292,52 @@
     readelf  :读elf中各个段；可用man查看具体命令信息；
         -S  --section-headers   Display the sections' header
             --sections          An alias for --section-headers
+####
+    yicheng@ubuntu ~/ss/2011-1-16 $ ldd hello.app  共加载了以下3个库
+	linux-gate.so.l =>  (0x00c49000)               标志连接和加载的信息
+	libc.so.6 => /lib/libc.so.6 (0x009f8000)      libc.so :linux标准C语言库；使用时系统先看看内存中是否存在此库，没有则先去调用，然后再加载应用程序；
+	
+	/lib/ld-linux.so.2 (0x00409000)              ld-linux.so.2：动态连接器。 
+####
+     Disassembly of section .plt:
+216 
+217 080482c0 <__gmon_start__@plt-0x10>:
+218  80482c0:   ff 35 f8 9f 04 08       pushl  0x8049ff8     ：yazhan 内存地址中的内容 
+219  80482c6:   ff 25 fc 9f 04 08       jmp    *0x8049ffc
+220  80482cc:   00 00                   add    %al,(%eax)
+221     ...
+222 
+223 080482d0 <__gmon_start__@plt>:
+224  80482d0:   ff 25 00 a0 04 08       jmp    *0x804a000
+225  80482d6:   68 00 00 00 00          push   $0x0            ：压栈立即数
+226  80482db:   e9 e0 ff ff ff          jmp    80482c0 <_init+0x30>
+227 
+228 080482e0 <__libc_start_main@plt>:
+229  80482e0:   ff 25 04 a0 04 08       jmp    *0x804a004    
+230  80482e6:   68 08 00 00 00          push   $0x8
+231  80482eb:   e9 d0 ff ff ff          jmp    80482c0 <_init+0x30>
+232 
+234  80482f0:   ff 25 08 a0 04 08       jmp    *0x804a008   * :表示取其对应地址中的内容
+235  80482f6:   68 10 00 00 00          push   $0x10
+236  80482fb:   e9 c0 ff ff ff          jmp    80482c0 <_init+0x30>
+
+             
+
+ 080483b4 <main>:
+316 #include <stdio.h>
+317 
+318 int main(void)
+319 {
+320  80483b4:   55                      push   %ebp
+321  80483b5:   89 e5                   mov    %esp,%ebp
+322  80483b7:   83 e4 f0                and    $0xfffffff0,%esp
+323  80483ba:   83 ec 10                sub    $0x10,%esp
+324     printf("hello world\n");
+325  80483bd:   c7 04 24 90 84 04 08    movl   $0x8048490,(%esp)
+326 #80483c4:   e8 27 ff ff ff          call   80482f0 <puts@plt>  80482f0为puts函数在plt表中的表象地址。
+327 #return 0; 
+328  80483c9:   b8 00 00 00 00          mov    $0x0,%eax
+329 }
 
     
         
